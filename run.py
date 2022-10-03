@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from  pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -7,12 +8,21 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
+
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 
-while True:
+def get_sales_data():
+    """
+    Get sales figures input from the user.
+    Run a while loop to collect a valid string of data from the user
+    via the terminal, which must be a string of 6 numbers separated
+    by commas. The loop will repeatedly request data, until it is valid.
+    """
+
+    while True:
         print("Please enter sales data from the last market.")
         print("Data should be six numbers, separated by commas.")
         print("Example: 10,20,30,40,50,60\n")
@@ -55,7 +65,17 @@ def update_sales_worksheet(data):
     sales_worksheet.append_row(data)
     print("Sales worksheet updated successfully.\n")
 
+def calculate_surplus_data(sales_row):
+    """
     
-get_sales_data()
-sales_data = [int(num) for num in data]
-update_sales_worksheet(sales_data)
+    """
+    print("Calculating surplus data...")
+
+
+def main ():
+    data = get_sales_data()
+    sales_data = [int(num) for num in data]
+    update_sales_worksheet(sales_data)
+
+print(Welcome to Love Sandwiches Data Automation)
+main()
